@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>Thống kê</title>
+	<meta name="description" content="Jetson is a Dashboard & Admin Site Responsive Template by hencework." />
+	<meta name="keywords"
+		content="admin, admin dashboard, admin template, cms, crm, Jetson Admin, Jetsonadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
+	<meta name="author" content="hencework" />
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="../../public/favicon.ico">
+	<link rel="icon" href="../../public/favicon.ico" type="image/x-icon">
+
+	<!-- Morris Charts CSS -->
+	<link href="../../public/vendors/bower_components/morris.js/morris.css" rel="stylesheet" type="text/css" />
+
+	<!-- Custom CSS -->
+	<link href="../../public/dist/css/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+	<!--Preloader-->
+	<div class="preloader-it">
+		<div class="la-anim-1"></div>
+	</div>
+	<!--/Preloader-->
+	<div class="wrapper theme-1-active pimary-color-green">
+
+		<%-include("./block/user-header")%>
+            <%-include("./block/user-nav")%>
+
+
+		<!-- Main Content -->
+		<div class="page-wrapper">
+			<div class="container-fluid">
+				<!-- Title -->
+				<div class="row heading-bg">
+					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+						<h5 class="txt-dark" style="font-weight: bold;">Bảng thống kê</h5>
+					</div>
+
+					<!-- Breadcrumb -->
+					<!-- /Breadcrumb -->
+
+				</div>
+				<!-- /Title -->
+
+				<div class="row">
+					<div class="mb-50">
+						<div class="panel panel-default card-view">
+							<div class="panel-heading">
+								<div class="pull-left">
+									<h6 class="panel-title txt-dark">mặt hàng đã bán hôm nay</h6>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+							<div class="panel-wrapper collapse in">
+								<div class="panel-body">
+									<div id="morris_bar_chart" class="morris-chart"></div>
+								</div>
+							</div>
+							<div class="mb-10" id="priceTotal">
+								<%
+								var sum = 0;
+									if(productChartToDay && productChartToDay.length > 0){
+									productChartToDay.forEach(item=>{
+										sum += parseInt(item.total_price);
+									})
+									}
+								%>
+								<h5 style="font-weight: bolder; color: #4aa23c;">Tổng Doanh Thu:  <%=(sum.toLocaleString('vi-VN'))%> VNĐ</h5>
+							</div>
+						</div>
+					</div>
+
+					<div class="">
+						<div class="panel panel-default card-view">
+							<div class="panel-heading">
+								<div class="pull-left">
+									<h6 class="panel-title txt-dark">Doanh thu cho từng sản phẩm
+									</h6>
+								</div>
+								<div class="pull-right">
+									<input type="date" id="doanhthu">
+								</div>
+								<div class="clearfix"></div>
+							</div>
+							<div class="panel-wrapper collapse in">
+								<div class="panel-body" id="chartDoanhThu">
+									<!-- <div id="morris_bar_chart_2" class="morris-chart"></div> -->
+								</div>
+							</div>
+							<div class="mb-10" id="price">
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Footer -->
+			<footer class="footer container-fluid pl-30 pr-30">
+				<div class="row">
+					<div class="col-sm-12">
+						<p>2023 &copy; Thesis by The Anh Phung with Thuy Trang Phung</p>
+					</div>
+				</div>
+			</footer>
+			<!-- /Footer -->
+
+		</div>
+		<!-- /Main Content -->
+
+	</div>
+	<!-- /#wrapper -->
+
+	<!-- JavaScript -->
+
+	<!-- jQuery -->
+	<script src="../../public/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="../../public/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<!-- Morris Charts JavaScript -->
+	<script src="../../public/vendors/bower_components/raphael/raphael.min.js"></script>
+	<script src="../../public/vendors/bower_components/morris.js/morris.min.js"></script>
+	<script src="../../public/dist/js/morris-data.js"></script>
+
+	<!-- Slimscroll JavaScript -->
+	<script src="../../public/dist/js/jquery.slimscroll.js"></script>
+
+	<!-- Owl JavaScript -->
+	<script src="../../public/vendors/bower_components/owl.carousel/dist/owl.carousel.min.js"></script>
+
+	<!-- Switchery JavaScript -->
+	<script src="../../public/vendors/bower_components/switchery/dist/switchery.min.js"></script>
+
+	<!-- Fancy Dropdown JS -->
+	<script src="../../public/dist/js/dropdown-bootstrap-extended.js"></script>
+
+	<!-- Init JavaScript -->
+	<script src="../../public/dist/js/init.js"></script>
+
+	<script>
+		<%if(productChartToDay && productChartToDay.length > 0){%>
+		if ($('#morris_bar_chart').length > 0){
+			// Bar Chart 1
+			Morris.Bar({
+				element: 'morris_bar_chart',
+				data: [
+				<%if(productChartToDay) {%>
+				<% productChartToDay.forEach(item => {%>
+				{
+					device: '<%=item.product_name%>',
+					geekbench: <%=item.total_price %>
+					},
+				<%}) %>
+				<%}%>
+				],
+				xkey: 'device',
+				ykeys: ['geekbench'],
+				labels: ['Tổng tiền'],
+				barRatio: 0.4,
+				xLabelAngle: 35,
+				pointSize: 1,
+				barOpacity: 1,
+				pointStrokeColors: ['#4aa23c'],
+				behaveLikeLine: true,
+				grid: false,
+				gridTextColor: '#878787',
+				hideHover: 'auto',
+				barColors: ['#4aa23c'],
+				resize: true,
+				gridTextFamily: "Roboto"
+		});
+		}
+	<%}%>
+
+
+		
+		$(document).on("input", "#doanhthu", function (event) {
+			$.get("/chart/revenue", {
+				key: $(this).val(),
+			}, (data) => {
+				//console.log(data);
+				if (data && data.length > 0) {
+					let html = `<div id="morris_bar_chart_2" class="morris-chart"></div>`;
+					$("#chartDoanhThu").html(html);
+					let items = [];
+					for (let i = 0; i < data.length; i++){
+    					let item = {
+        					device: data[i].product_name,
+        					geekbench: data[i].total_price
+    					};
+    					items.push(item);
+					}
+					var totalPrice = 0;
+					data.forEach(item=>{
+						totalPrice += parseInt(item.total_price);
+					})
+					let price = `<h5 style="font-weight: bolder; color: #FF7F50;">Tổng Doanh Thu:  ${(totalPrice.toLocaleString('vi-VN'))} VNĐ</h5>`;
+					$("#price").html(price);
+				if($('#morris_bar_chart_2').length > 0)
+				Morris.Bar({
+					element: 'morris_bar_chart_2',
+					data: items,
+					xkey: 'device',
+					ykeys: ['geekbench'],
+					labels: ['Tổng tiền'],
+					barRatio: 0.4,
+					xLabelAngle: 35,
+					pointSize: 1,
+					barOpacity: 1,
+					pointStrokeColors:['#4aa23c'],
+					behaveLikeLine: true,
+					grid: false,
+					gridTextColor:'#878787',
+					hideHover: 'auto',
+					barColors: ['#FF7F50'],
+					resize: true,
+					gridTextFamily:"Roboto"
+					});
+				}
+				else {
+					let html = `<h5>Không có dữ liệu</h5>`;
+					let price = `<h5 style="font-weight: bolder; color: #FF7F50;">Tổng Doanh Thu:  0 VNĐ</h5>`;
+					$("#chartDoanhThu").html(html);
+					$("#price").html(price);
+				}
+			})
+		})
+
+	</script>
+
+</body>
+
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>Tư vấn</title>
+	<meta name="description" content="Jetson is a Dashboard & Admin Site Responsive Template by hencework." />
+	<meta name="keywords" content="admin, admin dashboard, admin template, cms, crm, Jetson Admin, Jetsonadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
+	<meta name="author" content="hencework"/>
+	
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="../../public/favicon.ico">
+	<link rel="icon" href="../../public/favicon.ico" type="image/x-icon">
+	
+	<!-- switchery CSS -->
+	<link href="../../public/vendors/bower_components/switchery/dist/switchery.min.css" rel="stylesheet" type="text/css"/>
+		
+	<!-- Custom CSS -->
+	<link href="../../public/dist/css/style.css" rel="stylesheet" type="text/css">
+	
+</head>
+
+<body>
+	<!--Preloader-->
+	<div class="preloader-it">
+		<div class="la-anim-1"></div>
+	</div>
+	<!--/Preloader-->
+    <div class="wrapper theme-1-active pimary-color-green">
+
+        <%-include("./block/user-header")%>
+            <%-include("./block/user-nav")%>
+
+        <!-- Main Content -->
+		<div class="page-wrapper">
+            <div class="container-fluid">
+				<!-- Title -->
+			
+				<!-- /Title -->
+				
+				<!-- Row -->
+				<div class="row mt-30">
+					<div class="col-md-12">
+						<div class="panel panel-default border-panel card-view pa-0">
+							<div class="panel-wrapper collapse in">
+								<div class="panel-body pa-0">
+									<div class="chat-cmplt-wrap chat-for-widgets-1">
+
+										<div >
+											<div class="recent-chat-wrap">
+												<div class="panel-heading ma-0 pt-15">
+													<div class="goto-back">
+														<div class="inline-block"></div>
+														<a  id="goto_back_widget_1" href="javascript:void(0)" class="inline-block txt-grey">
+															<i class="ti-user"></i>
+														</a>	
+														<span class="inline-block txt-dark">Hỗ trợ khách hàng</span>
+														<a href="javascript:void(0)" class="inline-block text-right txt-grey"><i class="ti-link"></i></a>
+														<div class="clearfix"></div>
+													</div>
+												</div>
+												<div class="panel-wrapper collapse in">
+													<div class="panel-body pa-0">
+														<div class="chat-content">
+															<ul class="chatapp-chat-nicescroll-bar pt-20">
+																<li class="friend">
+																	<div class="friend-msg-wrap">
+																		<img class="user-img img-circle block pull-left"  src="/public/upload/admin.png" alt="user"/>
+																		<div class="msg pull-left">
+																			<p>Xin chào, tôi có thể giúp gì được cho bạn?</p>
+																			<div class="msg-per-detail text-right">
+																				<span class="msg-time txt-grey"><%= (new Date()).toTimeString().split(' ')[0]%></span>
+																			</div>
+																		</div>
+																		<div class="clearfix"></div>
+																	</div>	
+																</li>
+																<!-- <li class="self mb-10">
+																	<div class="self-msg-wrap">
+																		<div class="msg block pull-right"> Oh, hi Sarah I'm have got a new job now and is going great.
+																			<div class="msg-per-detail text-right">
+																				<span class="msg-time txt-grey">2:31 pm</span>
+																			</div>
+																		</div>
+																		<div class="clearfix"></div>
+																	</div>	
+																</li>
+																<li class="self">
+																	<div class="self-msg-wrap">
+																		<div class="msg block pull-right">  How about you?
+																			<div class="msg-per-detail text-right">
+																				<span class="msg-time txt-grey">2:31 pm</span>
+																			</div>
+																		</div>
+																		<div class="clearfix"></div>
+																	</div>	
+																</li>
+																<li class="friend">
+																	<div class="friend-msg-wrap">
+																		<img class="user-img img-circle block pull-left"  src="dist/img/user.png" alt="user"/>
+																		<div class="msg pull-left"> 
+																			<p>Not too bad.</p>
+																			<div class="msg-per-detail  text-right">
+																				<span class="msg-time txt-grey">2:35 pm</span>
+																			</div>
+																		</div>
+																		<div class="clearfix"></div>
+																	</div>	
+																</li> -->
+															</ul>
+														</div>
+														<div class="input-group">
+															<input type="text" id="input_msg_send_chatapp" name="send-msg" class="input-msg-send form-control" placeholder="Gửi tin nhắn">		
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /Row -->
+				
+			</div>
+			<!-- Footer -->
+			<footer class="footer container-fluid pl-30 pr-30">
+				<div class="row">
+					<div class="col-sm-12">
+						<p>2023 &copy; Thesis by The Anh Phung with Thuy Trang Phung</p>
+					</div>
+				</div>
+			</footer>
+			<!-- /Footer -->
+        </div>
+        <!-- /Main Content -->
+
+    </div>
+    <!-- /#wrapper -->
+	
+	<!-- JavaScript -->
+	
+    <!-- jQuery -->
+    <script src="../../public/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../../public/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script>
+	<!-- Slimscroll JavaScript -->
+	<script src="../../public/dist/js/jquery.slimscroll.js"></script>
+	
+	<!-- Owl JavaScript -->
+	<script src="../../public/vendors/bower_components/owl.carousel/dist/owl.carousel.min.js"></script>
+	
+	<!-- Fancy Dropdown JS -->
+	<script src="../../public/dist/js/dropdown-bootstrap-extended.js"></script>
+	
+	<!-- Switchery JavaScript -->
+	<script src="../../public/vendors/bower_components/switchery/dist/switchery.min.js"></script>
+	
+	<!-- Init JavaScript -->
+	<script>
+		var id_user = null;
+		var avatar = "//public/upload/admin.png"
+	</script>
+	<script src="../../public/dist/js/init.js"></script>
+	
+</body>
+
+</html>

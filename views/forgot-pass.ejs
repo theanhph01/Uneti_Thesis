@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>Quên mật khẩu</title>
+		<meta name="description" content="Jetson is a Dashboard & Admin Site Responsive Template by hencework." />
+		<meta name="keywords" content="admin, admin dashboard, admin template, cms, crm, Jetson Admin, Jetsonadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
+		<meta name="author" content="hencework"/>
+		
+		<!-- Favicon -->
+		<link rel="shortcut icon" href="public/favicon.ico">
+		<link rel="icon" href="public/favicon.ico" type="image/x-icon">
+		
+		<!-- vector map CSS -->
+		<link href="public/vendors/bower_components/jasny-bootstrap/dist/css/jasny-bootstrap.min.css" rel="stylesheet" type="text/css"/>
+		
+		<!-- Custom CSS -->
+		<link href="public/dist/css/style.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		<!--Preloader-->
+		<div class="preloader-it">
+			<div class="la-anim-1"></div>
+		</div>
+		<!--/Preloader-->
+		
+		<div class="wrapper pa-0">
+			<!-- Main Content -->
+			<div class="page-wrapper pa-0 ma-0 auth-page">
+				<div class="container-fluid">
+					<!-- Row -->
+					<div class="table-struct full-width full-height">
+						<div class="table-cell vertical-align-middle auth-form-wrap">
+							<div class="auth-form  ml-auto mr-auto no-float">
+								<div class="row">
+									<div class="col-sm-12 col-xs-12">
+										<div class="sp-logo-wrap text-center pa-0 mb-30">
+											<a href="../../login">
+												<img class="brand-img mr-10" src="../../public/upload/Unetilogo.png" width="40px" height="40px" alt="brand"/>
+												<span class="brand-text">Uneti</span>
+											</a>
+										</div>
+										<div class="mb-30">
+											<h3 class="text-center txt-dark mb-10">Tìm mật khẩu của bạn?</h3>
+											<h6 class="text-center txt-grey nonecase-font">Nhập email và tên đăng nhập đã đăng kí.</h6>
+										</div>	
+										<div class="form-wrap">
+											<form action="./forgot-password" method="post">
+												<div class="row">
+													<div class="form-group col-sm-6">
+														<label class="control-label mb-10" for="exampleInputEmail_2" style="margin-bottom: 2px !important;">Email</label>
+														<input type="email" name="email" class="form-control" required="" id="exampleInputEmail_2" placeholder="email">
+													</div>
+													<div class="form-group col-sm-6">
+														<label class="control-label mb-10" for="exampleInputEmail_2" style="margin-bottom: 2px !important;">Tên đăng nhập</label>
+														<input type="text" name="user_name" class="form-control" required="" id="exampleInputEmail_2" placeholder="tên đăng nhập">
+													</div>
+													<div id="show_div_pass">
+														<div class="form-group col-sm-6">
+															<label class="control-label mb-10" for="exampleInputEmail_2" style="margin-bottom: 2px !important;">Mật khẩu mới</label>
+															<input type="password" id="pass1" name="password1" class="form-control" required="" id="exampleInputEmail_2" placeholder="mật khẩu mới">
+														</div>
+														<div class="form-group col-sm-6">
+															<label class="control-label mb-10" for="exampleInputEmail_2" style="margin-bottom: 2px !important;">Nhập lại mật khẩu</label>
+															<input type="password" id="pass2" name="password2" onblur="checkPass()" class="form-control" required="" id="exampleInputEmail_2" placeholder="nhập lại mật khẩu">
+														</div>
+													</div>
+												</div>
+												<div class="form-group text-center">
+													<button id="confirm" type="submit" class="btn btn-info btn-rounded" data-toggle="modal" data-target="#myModal">Xác thực</button>
+													<!-- <button style="display: none;" id="change_password" type="submit" class="btn btn-info btn-rounded" data-toggle="modal" data-target="#myModal">Đổi mật khẩu</button> -->
+												</div>
+											</form>
+										</div>
+									</div>	
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /Row -->	
+				</div>
+				
+			</div>
+			<!-- /Main Content -->
+		</div>
+		<!-- /#wrapper -->
+		
+		<!-- JavaScript -->
+		<script>
+			function checkPass(){
+				let password1 = document.getElementById('pass1').value;
+				let password2 = document.getElementById('pass2').value;
+				if(!(password1 == password2)){
+					alert('Mật khẩu không trùng khớp');
+				}
+			}
+
+			<%var message = message%>
+			<%if(message){%>
+				alert("<%=message%>");
+				<%}%>
+		</script>
+
+		<script src="https://cdn.socket.io/4.6.0/socket.io.min.js"
+		integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+"
+		crossorigin="anonymous"></script>
+		
+		<!-- jQuery -->
+		<script src="public/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+		
+		<!-- Bootstrap Core JavaScript -->
+		<script src="public/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="public/vendors/bower_components/jasny-bootstrap/dist/js/jasny-bootstrap.min.js"></script>
+		
+		<!-- Slimscroll JavaScript -->
+		<script src="public/dist/js/jquery.slimscroll.js"></script>
+		
+		<!-- Init JavaScript -->
+		<script src="public/dist/js/init.js"></script>
+	</body>
+</html>

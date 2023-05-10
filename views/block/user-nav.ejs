@@ -1,0 +1,78 @@
+<!-- Left Sidebar Menu -->
+<div class="fixed-sidebar-left">
+    <ul class="nav navbar-nav side-nav nicescroll-bar">
+        <li class="navigation-header">
+            <span>Danh mục</span> 
+            <i class="zmdi zmdi-more"></i>
+        </li>
+        <li>
+            <a class="active" href="javascript:void(0);" data-toggle="collapse" data-target="#ecom_dr"><div class="pull-left"><i class="zmdi zmdi-shopping-basket mr-20"></i><span class="right-nav-text">Sản Phẩm</span></div><div class="pull-right"><span class="label label-success">hot</span></div><div class="clearfix"></div></a>
+            <ul id="ecom_dr" <%if(user){%> class="collapse collapse-level-1" <%}%>>
+                <%category.forEach(item =>{%>
+                <li>
+                    <a href="/home/search/<%=item.category_id%>"><%=item.category_name%></a>
+                </li>
+                <%})%>
+                <!-- <li>
+                    <a class="active-page" href="product.html">Tai nghe</a>
+                </li>
+                <li>
+                    <a href="product-detail.html">Sạc Dự Phòng</a>
+                </li>
+                <li>
+                    <a href="add-products.html">SmartWatch</a>
+                </li>
+                <li>
+                    <a href="product-orders.html">Máy Chơi Game</a>
+                </li>
+                <li>
+                    <a href="product-cart.html">Thiết bị thông minh</a>
+                </li> -->
+            </ul>
+        </li>
+        <%if(user && user.role == 0){%>
+        <li>
+            <a href="javascript:void(0);" data-toggle="collapse" data-target="#dashboard_dr"><div class="pull-left"><i class="zmdi zmdi-storage mr-20"></i><span class="right-nav-text">Cá nhân</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+            <ul id="dashboard_dr" class="">
+                <li>
+                    <a href="/profile">Thông tin cá nhân</a>
+                </li>
+                <li>
+                    <a href="/order-cart">Giỏ hàng</a>
+                </li>
+                <li>
+                    <a href="/chats/user">Chat</a>
+                </li>
+            </ul>
+        </li>
+        <%}else if(user && user.role == 1){%>
+            <li>
+                <a href="javascript:void(0);" data-toggle="collapse" data-target="#dashboard_dr"><div class="pull-left"><i class="zmdi zmdi-storage mr-20"></i><span class="right-nav-text">Cá nhân</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+                <ul id="dashboard_dr" class="">
+                    <li>
+                        <a href="/profile">Thông tin cá nhân</a>
+                    </li>
+                    <li>
+                        <a href="/users-manager">Danh sách người dùng</a>
+                    </li>
+                    <li>
+                        <a href="/categories">Quản lí danh mục</a>
+                    </li>
+                    <li>
+                        <a href="/products">Quản lí sản phẩm</a>
+                    </li>
+                    <li>
+                        <a href="/products-manager">Quản lí đơn hàng</a>
+                    </li>
+                    <li>
+                        <a href="/chart">Thống kê</a>
+                    </li>
+                    <li>
+                        <a href="/chats/admin">Chat</a>
+                    </li>
+                </ul>
+            </li>
+        <%}%>
+    </ul>
+</div>
+<!-- /Left Sidebar Menu -->

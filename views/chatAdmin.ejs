@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>Hỗ trợ khách hàng</title>
+	<meta name="description" content="Jetson is a Dashboard & Admin Site Responsive Template by hencework." />
+	<meta name="keywords"
+		content="admin, admin dashboard, admin template, cms, crm, Jetson Admin, Jetsonadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
+	<meta name="author" content="hencework" />
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="../../public/favicon.ico">
+	<link rel="icon" href="../../public/favicon.ico" type="image/x-icon">
+
+	<!-- switchery CSS -->
+	<link href="../../public/vendors/bower_components/switchery/dist/switchery.min.css" rel="stylesheet"
+		type="text/css" />
+
+	<!-- Custom CSS -->
+	<link href="../../public/dist/css/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+	<!--Preloader-->
+	<div class="preloader-it">
+		<div class="la-anim-1"></div>
+	</div>
+	<!--/Preloader-->
+	<div class="wrapper theme-1-active pimary-color-green">
+
+
+		<%-include("./block/user-header")%>
+			<%-include("./block/user-nav")%>
+
+				<!-- Main Content -->
+				<div class="page-wrapper">
+					<div class="container-fluid">
+						<!-- Title -->
+					
+						<!-- /Title -->
+
+						<!-- Row -->
+						<div class="row mt-20">
+							<div class="col-md-12">
+								<div class="panel panel-default border-panel card-view pa-0">
+									<div class="panel-wrapper collapse in">
+										<div class="panel-body pa-0">
+											<div class="chat-cmplt-wrap chat-for-widgets-1">
+												<div class="chat-box-wrap">
+													<div>
+														<form role="search" class="chat-search">
+															<div class="input-group">
+																<input id="example-input1-group21"
+																	name="example-input1-group2" class="form-control"
+																	placeholder="" value="Danh sách người dùng" type="text" readonly>
+																<span class="input-group-btn">
+																	<button type="button" class="btn  btn-default"><i
+																			class="ti-list"></i></button>
+																</span>
+															</div>
+														</form>
+														<div class="chatapp-nicescroll-bar">
+															<ul class="chat-list-wrap">
+																<li class="chat-list">
+																	<div class="chat-body">
+																		<%users.forEach(item=> {%>
+																			<a href="javascript:void(0)"
+																				onclick="getId(<%=item.user_id%>, `/public/upload/<%=item.avatar%>`)">
+																				<div class="chat-data">
+																					<img class="user-img img-circle"
+																						src="/public/upload/<%=item.avatar%>"
+																						alt="user" />
+																					<div class="user-data">
+																						<span
+																							class="name block capitalize-font">
+																							<%=item.user_name%>
+																						</span>
+																						<span id="tb<%=item.user_id%>"
+																							class="time block truncate txt-grey">....</span>
+																					</div>
+																					<div class="status away"></div>
+																					<div class="clearfix"></div>
+																				</div>
+																			</a>
+																			<%});%>
+																	</div>
+																</li>
+															</ul>
+														</div>
+													</div>
+												</div>
+												<div class="recent-chat-box-wrap">
+													<div class="recent-chat-wrap">
+														<div class="panel-heading ma-0 pt-15">
+															<div class="goto-back">
+																<a id="goto_back_widget_1" href="javascript:void(0)"
+																	class="inline-block txt-grey">
+																	<i class="ti-user"></i>
+																</a>
+																<span class="inline-block txt-dark">Khách hàng</span>
+																<a href="javascript:void(0)"
+																	class="inline-block text-right txt-grey"><i
+																		class="ti-link"></i></a>
+																<div class="clearfix"></div>
+															</div>
+														</div>
+														<div class="panel-wrapper collapse in">
+															<div class="panel-body pa-0">
+																<div class="chat-content">
+																	<ul class="chatapp-chat-nicescroll-bar pt-20">
+																		<li class="friend">
+																			
+																		</li>
+																		<li class="self mb-10">
+																			
+																		</li>
+																		<li class="self">
+																			
+																		</li>
+																		<li class="friend">
+																			
+																		</li>
+																	</ul>
+																</div>
+																<div class="input-group">
+																	<input type="text" id="input_msg_send_chatapp"
+																		name="send-msg"
+																		class="input-msg-send form-control"
+																		placeholder="Phản hồi">
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /Row -->
+
+					</div>
+					<!-- Footer -->
+					<footer class="footer container-fluid pl-30 pr-30">
+						<div class="row">
+							<div class="col-sm-12">
+								<p>2023 &copy; Thesis by The Anh Phung with Thuy Trang Phung</p>
+							</div>
+						</div>
+					</footer>
+					<!-- /Footer -->
+				</div>
+				<!-- /Main Content -->
+
+	</div>
+	<!-- /#wrapper -->
+
+	<!-- JavaScript -->
+
+	<!-- jQuery -->
+	<script src="../../public/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="https://cdn.socket.io/4.6.0/socket.io.min.js"
+		integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+"
+		crossorigin="anonymous"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script src="../../public/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<!-- Slimscroll JavaScript -->
+	<script src="../../public/dist/js/jquery.slimscroll.js"></script>
+
+	<!-- Owl JavaScript -->
+	<script src="../../public/vendors/bower_components/owl.carousel/dist/owl.carousel.min.js"></script>
+
+	<!-- Fancy Dropdown JS -->
+	<script src="../../public/dist/js/dropdown-bootstrap-extended.js"></script>
+
+	<!-- Switchery JavaScript -->
+	<script src="../../public/vendors/bower_components/switchery/dist/switchery.min.js"></script>
+
+	<!-- Init JavaScript -->
+	<script>
+		var id_user = null;
+		var avatar = "";
+		function getId(id, avt) {
+			id_user = id;
+			avatar = avt;
+			$(".chat-content").html(chat[id]);
+			$('.nicescroll-bar').slimscroll({ height: '100%', color: '#878787', disableFadeOut: true, borderRadius: 0, size: '4px', alwaysVisible: false });
+			$('.message-nicescroll-bar').slimscroll({ height: '229px', size: '4px', color: '#878787', disableFadeOut: true, borderRadius: 0 });
+			$('.message-box-nicescroll-bar').slimscroll({ height: '350px', size: '4px', color: '#878787', disableFadeOut: true, borderRadius: 0 });
+			$('.product-nicescroll-bar').slimscroll({ height: '346px', size: '4px', color: '#878787', disableFadeOut: true, borderRadius: 0 });
+			$('.app-nicescroll-bar').slimscroll({ height: '162px', size: '4px', color: '#878787', disableFadeOut: true, borderRadius: 0 });
+			$('.todo-box-nicescroll-bar').slimscroll({ height: '310px', size: '4px', color: '#878787', disableFadeOut: true, borderRadius: 0 });
+			$('.users-nicescroll-bar').slimscroll({ height: '370px', size: '4px', color: '#878787', disableFadeOut: true, borderRadius: 0 });
+			$('.users-chat-nicescroll-bar').slimscroll({ height: '257px', size: '4px', color: '#878787', disableFadeOut: true, borderRadius: 0 });
+			$('.chatapp-nicescroll-bar').slimscroll({ height: '543px', size: '4px', color: '#878787', disableFadeOut: true, borderRadius: 0 });
+			$('.chatapp-chat-nicescroll-bar').slimscroll({ height: '483px', size: '4px', color: '#878787', disableFadeOut: true, borderRadius: 0 });
+		}
+		var html = `<ul class="chatapp-chat-nicescroll-bar pt-20" style="overflow: hidden; width: auto; height: 483px;">
+																<li class="friend">
+																	
+																</li>
+																<li class="self mb-10">
+																	
+																</li>
+																<li class="self">
+																	
+																</li>
+																<li class="friend">
+																	
+																</li>
+															
+																</ul>
+																`
+		var chat = []
+			<% users.forEach(item => {%>
+				chat[<%=item.user_id %>] = html;													
+			<%});%>
+	</script>
+	<script src="../../public/dist/js/init.js"></script>
+
+</body>
+
+</html>

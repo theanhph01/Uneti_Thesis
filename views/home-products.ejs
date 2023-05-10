@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Trang chủ</title>
+    <meta name="description" content="Jetson is a Dashboard & Admin Site Responsive Template by hencework." />
+    <meta name="keywords"
+        content="admin, admin dashboard, admin template, cms, crm, Jetson Admin, Jetsonadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
+    <meta name="author" content="hencework" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../../public/favicon.ico">
+    <link rel="icon" href="../../public/favicon.ico" type="image/x-icon">
+
+    <!--alerts CSS -->
+    <link href="../../public/vendors/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom Fonts -->
+    <link href="../../public/dist/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Calendar CSS -->
+    <link href="../../public/vendors/bower_components/fullcalendar/dist/fullcalendar.css" rel="stylesheet"
+        type="text/css" />
+
+    <!-- Custom CSS -->
+    <link href="../../public/dist/css/style.css" rel="stylesheet" type="text/css">
+
+    <style>
+        #product:hover {
+            box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.6);
+            cursor: pointer;
+        }
+
+        #product {
+            box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+
+</head>
+
+<body>
+    <!--Preloader-->
+    <div class="preloader-it">
+        <div class="la-anim-1"></div>
+    </div>
+    <!--/Preloader-->
+    <div class="wrapper theme-1-active pimary-color-green">
+
+        <%-include("./block/user-header")%>
+            <%-include("./block/user-nav")%>
+
+                <!-- Main Content -->
+                <div class="page-wrapper">
+                    <div class="container-fluid">
+                        <!-- Title -->
+                        <div class="row heading-bg">
+                            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                                <h5 class="txt-dark">Trang chủ</h5>
+                            </div>
+                            <!-- Breadcrumb -->
+                            <!-- /Breadcrumb -->
+                        </div>
+                        <!-- /Title -->
+
+                        <!-- Product Row One -->
+                        <div class="row" id="products">
+                            <%products.forEach(item=>{%>
+                                <%if(item.status==1){%>
+                                    <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6"
+                                        onclick="loadProduct(<%= item.product_id%>)">
+                                        <div id="product" class="panel panel-default card-view pa-0">
+                                            <div class="panel-wrapper collapse in">
+                                                <div class="panel-body pa-0">
+                                                    <article class="col-item">
+                                                        <div class="photo">
+                                                            <a href="javascript:void(0)"> <img
+                                                                    src="../../public/upload/<%=item.file_name%>"
+                                                                    class="img-responsive" alt="Product Image"
+                                                                    style="width: 282px; height:150px;" /> </a>
+                                                        </div>
+                                                        <div class="info" style="height: 92px;">
+                                                            <h6>
+                                                                <%=item.product_name%>
+                                                            </h6>
+                                                            <span class="head-font block text-warning font-16">
+                                                                <%
+                                                                    let num = item.price;
+                                                                    let formattedNum = num.toLocaleString('vi-VN'); // Sử dụng locale 'vi-VN' để định dạng số theo định dạng Việt Nam
+                                                                %>
+                                                                <%=formattedNum%> VNĐ
+                                                            </span>
+                                                        </div>
+                                                    </article>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <%}%>
+                                        <%})%>
+                        </div>
+                        <!-- /Product Row Four -->
+
+                    </div>
+
+                    <!-- Footer -->
+                    <footer class="footer container-fluid pl-30 pr-30">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <p>2023 &copy; Thesis by The Anh Phung with Thuy Trang Phung</p>
+                            </div>
+                        </div>
+                    </footer>
+                    <!-- /Footer -->
+
+                    <!-- /Main Content -->
+
+                </div>
+                <!-- /#wrapper -->
+
+                <!-- JavaScript -->
+                <script>
+                    function loadProduct(id) {
+                        window.location.href = "../../home/productdetails/" + id;
+                    }
+
+                </script>
+
+
+
+                <!-- jQuery -->
+                <script src="../../public/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+
+                <!-- Bootstrap Core JavaScript -->
+                <script src="../../public/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+                <!-- Slimscroll JavaScript -->
+                <script src="../../public/dist/js/jquery.slimscroll.js"></script>
+
+                <!-- Owl JavaScript -->
+                <script src="../../public/vendors/bower_components/owl.carousel/dist/owl.carousel.min.js"></script>
+
+                <!-- Sweet-Alert  -->
+                <script src="../../public/vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+                <script src="../../public/dist/js/sweetalert-data.js"></script>
+
+                <!-- Switchery JavaScript -->
+                <script src="../../public/vendors/bower_components/switchery/dist/switchery.min.js"></script>
+
+                <!-- Fancy Dropdown JS -->
+                <script src="../../public/dist/js/dropdown-bootstrap-extended.js"></script>
+
+                <!-- Init JavaScript -->
+                <script src="../../public/dist/js/init.js"></script>
+</body>
+
+<script>
+    // $.get("/home/search", {
+    //     key: '15',
+    // }, (data) => {
+    //     console.log(data);
+    // })
+    let i = 0;
+    $(document).on("keyup", "#search", function (event) {
+       // console.log($(this).val())
+        if ($(this).val().length > 0 || i == 0) {
+            i = $(this).val().length;
+            $.get("/home/search", {
+                key: $(this).val(),
+            }, (data) => {
+                if (data.length > 0) {
+                    var html = ``;
+                    data.forEach(item => {
+                        html += `
+                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6" onclick="loadProduct(${item.product_id})">
+                                <div  id="product" class="panel panel-default card-view pa-0">
+                                    <div class="panel-wrapper collapse in">
+                                        <div class="panel-body pa-0">
+                                            <article class="col-item">
+                                                <div class="photo">
+                                                    <a href="javascript:void(0)"> <img
+                                                            src="../../../public/upload/${item.file_name}"
+                                                            class="img-responsive" alt="Product Image"
+                                                            style="width: 282px; height:150px;" /> </a>
+                                                </div>
+                                                <div class="info" style="height: 92px;">
+                                                    <h6>
+                                                        ${item.product_name}
+                                                    </h6>
+                                                    <span class="head-font block text-warning font-16">
+                                                        ${(item.price.toLocaleString('vi-VN'))} VNĐ
+                                                    </span>
+                                                </div>
+                                            </article>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `
+                        $("#products").html(html);
+                    });
+                }
+                else {
+
+                }
+
+            })
+        }
+        // console.log(event.key)
+        else{
+            window.location.href = "../../home"
+        }
+    })
+</script>
+
+</html>

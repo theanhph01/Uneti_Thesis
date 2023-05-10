@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Thông tin cá nhân</title>
+    <meta name="description" content="Jetson is a Dashboard & Admin Site Responsive Template by hencework." />
+    <meta name="keywords"
+        content="admin, admin dashboard, admin template, cms, crm, Jetson Admin, Jetsonadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
+    <meta name="author" content="hencework" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../../pulic/favicon.ico">
+    <link rel="icon" href="../../public/favicon.ico" type="image/x-icon">
+
+    <!-- Morris Charts CSS -->
+    <link href="../../public/vendors/bower_components/morris.js/morris.css" rel="stylesheet" type="text/css" />
+
+    <!-- vector map CSS -->
+    <link href="../../public/vendors/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet" type="text/css" />
+
+    <!-- Calendar CSS -->
+    <link href="../../public/vendors/bower_components/fullcalendar/dist/fullcalendar.css" rel="stylesheet" type="text/css" />
+
+    <!-- Data table CSS -->
+    <link href="../../public/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet"
+        type="text/css" />
+
+    <!-- Custom CSS -->
+    <link href="../../public/dist/css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <!--Preloader-->
+    <div class="preloader-it">
+        <div class="la-anim-1"></div>
+    </div>
+    <!--/Preloader-->
+    <div class="wrapper theme-1-active pimary-color-pink">
+
+        <%-include("./block/user-header")%>
+        <%-include("./block/user-nav")%>
+        
+        <!-- Main Content -->
+        <div class="page-wrapper">
+            <div class="container-fluid pt-25">
+
+                <!-- Row -->
+                <div class="row">
+                    <div class="col-lg-3 col-xs-12">
+                        <div class="panel panel-default card-view  pa-0">
+                            <div class="panel-wrapper collapse in">
+                                <div class="panel-body  pa-0">
+                                    <div class="profile-box">
+                                        <div class="" style="min-height: 170px; position: relative; background-image: url(https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg);">
+
+                                        </div>
+                                        <form action="../../../profile/updateprofile" enctype="multipart/form-data" method="post" >
+                                        <div class="profile-info text-center">
+                                            <div class="profile-img-wrap">
+                                                <img class="inline-block mb-10" src="../../public/upload/<%=profile.avatar%>"
+                                                    alt="user" />                         
+                                                <div class="fileupload btn btn-default">
+                                                    <span class="btn-text">Thêm ảnh</span>
+                                                    <input name="avt" class="upload" type="file">
+                                                </div>
+                                            </div>
+                                            <input type="hidden" value="<%=profile.avatar%>" name="filename">
+                                            <h5 class="block mt-10 mb-5 weight-500 capitalize-font txt-info"><%=profile.fullname%></h5>
+                                            <%
+										var job;
+										switch(profile.job) {
+											case 'kithuat':
+											  job = 'Kĩ Thuật'
+											  break;
+											case 'hanhchinh':
+											  job = 'Hành Chính'
+											  break;
+											case 'vanhoc':
+												job = "Nghệ thuật văn học"
+												break;
+											case 'congnhan':
+												job = "Công Nhân"
+												break;
+											case 'nongnghiep':
+												job = "Nông Nghiệp"
+												break;
+											default:
+											  job = 'Khác'
+										  }%>
+                                            <h6 class="block capitalize-font pb-20"><%=job%></h6>
+                                        </div>
+                                        <div class="social-info">
+                                            <div class="row">
+                                                <div class="col-xs-4 text-center">
+
+                                                </div>
+                                                <div class="col-xs-4 text-center">
+                                                    <span class="counts block head-font"><span
+                                                            class="counter-anim"><%=quantity%></span></span>
+                                                    <span class="counts-text block">Đã mua</span>
+                                                </div>
+                                                <div class="col-xs-4 text-center">
+
+                                                </div>
+                                            </div>
+                                            <button type="button" class="btn btn-info btn-block  btn-anim mt-30" data-toggle="modal"
+                                                data-target="#myModal"><i class="fa fa-pencil"></i><span
+                                                    class="btn-text">Đổi mật khẩu</span></button>
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-xs-12">
+                        <div class="panel panel-default card-view pa-0">
+                            <div class="panel-wrapper collapse in">
+                                <div class="panel-body pb-0">
+                                    <div class="tab-struct custom-tab-1">
+
+
+
+                                        <!-- Row -->
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="">
+                                                    <div class="panel-wrapper collapse in">
+                                                        <div class="panel-body pa-0">
+                                                            <div class="col-sm-12 col-xs-12">
+                                                                <div class="form-wrap">
+                                                                    <!-- <form action="./profile/updateprofile" method="post"> -->
+                                                                        <div class="form-group">
+                                                                            <!-- Họ Tên -->
+                                                                            <div class="form-group">
+                                                                                <label class="control-label mb-10"
+                                                                                    for="exampleInputuname_1">Họ
+                                                                                    Tên</label>
+                                                                                <div class="input-group">
+                                                                                    <div class="input-group-addon"><i
+                                                                                            class="ti-user"></i></div>
+                                                                                    <input name="fullName" type="text"
+                                                                                        class="form-control"
+                                                                                        value="<%=profile.fullname%>"
+                                                                                        required>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!-- Email -->
+                                                                            <div class="form-group">
+                                                                                <label class="control-label mb-10"
+                                                                                    for="exampleInputuname_1">Email</label>
+                                                                                <div class="input-group">
+                                                                                    <div class="input-group-addon"><i
+                                                                                            class="ti-email"></i></div>
+                                                                                    <input name="email" type="email"
+                                                                                        class="form-control"
+                                                                                        value="<%=profile.email%>"
+                                                                                        required>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!-- Ngày sinh -->
+                                                                            <div class="form-group">
+                                                                                <label class="control-label mb-10"
+                                                                                    for="exampleInputuname_1">Ngày
+                                                                                    sinh</label>
+                                                                                <div class="input-group">
+                                                                                    <div class="input-group-addon"><i
+                                                                                            class="ti-world"></i></div>
+                                                                                    <input name="birthday" type="date" <%let date=new
+                                                                                        Date(profile.date_of_birth)%>
+
+                                                                                    <%let getDate="0" + date.getDate()%>
+                                                                                        <%let getMonth="0" +
+                                                                                            (date.getMonth()+1)%>
+                                                                                            <%let
+                                                                                                birthday=date.getFullYear()
+                                                                                                + "-" +
+                                                                                                getMonth.slice(-2) + "-"
+                                                                                                + getDate.slice(-2)%>
+                                                                                                class="form-control"
+                                                                                                value="<%=birthday%>">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="control-label mb-10"
+                                                                                    for="exampleInputuname_1">Số điện
+                                                                                    thoại</label>
+                                                                                <div class="input-group">
+                                                                                    <div class="input-group-addon"><i
+                                                                                            class="ti-mobile"></i></div>
+                                                                                    <input  name="phone_number" 
+                                                                                        class="form-control"
+                                                                                        value="<%=profile.phone_number%>"
+                                                                                        required >
+                                                                                </div>
+                                                                            </div>
+                                                                            <!-- Giới tính -->
+                                                                            <label class="control-label mb-10">Giới
+                                                                                tính</label>
+                                                                            <div>
+                                                                                <%if(profile.gender == 1){%>
+                                                                                <div class="radio">
+                                                                                    <input type="radio" name="gender"
+                                                                                        id="radio_01" value="1" 
+                                                                                        checked="">
+                                                                                    <label for="radio_01">
+                                                                                        Nam
+                                                                                    </label>
+                                                                                </div>
+                                                                                <div class="radio">
+                                                                                    <input type="radio" name="gender"
+                                                                                        id="radio_02" value="2">
+                                                                                    <label for="radio_02">
+                                                                                        Nữ
+                                                                                    </label>
+                                                                                </div>
+                                                                                <%}else{%>
+                                                                                    <div class="radio">
+                                                                                        <input type="radio" name="gender" value="1"
+                                                                                            id="radio_01" >
+                                                                                        <label for="radio_01">
+                                                                                            Nam
+                                                                                        </label>
+                                                                                    </div>
+                                                                                    <div class="radio">
+                                                                                        <input type="radio" name="gender" value="2"
+                                                                                            id="radio_02" checked>
+                                                                                        <label for="radio_02">
+                                                                                            Nữ
+                                                                                        </label>
+                                                                                    </div>
+                                                                                <%}%>
+                                                                            </div>
+                                                                        </div>
+                                                                        <!-- Địa chỉ -->
+                                                                        <div class="form-group">
+                                                                            <label class="control-label mb-10"
+                                                                                for="exampleInputuname_1">Địa
+                                                                                chỉ</label>
+                                                                            <div class="input-group">
+                                                                                <div class="input-group-addon"><i
+                                                                                        class="ti-home"></i></div>
+                                                                                <input name="address" type="text" class="form-control"
+                                                                                    value="<%=profile.address%>">
+                                                                            </div>
+                                                                        </div>
+                                                                        <!-- Ngày tạo -->
+                                                                        <div class="form-group">
+                                                                            <label class="control-label mb-10"
+                                                                                for="exampleInputuname_1">Ngày
+                                                                                tạo</label>
+                                                                            <div class="input-group">
+                                                                                <div class="input-group-addon"><i
+                                                                                        class="ti-save"></i></div>
+                                                                                <%let created_at=new
+                                                                                    Date(profile.created_at)%>
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            value="<%=(created_at.getDate() + "/" + (created_at.getMonth()+1) + "/" + created_at.getFullYear())%>" readonly>
+                                                                            </div>
+                                                                        </div>
+                                                                        <!-- Ngày sửa -->
+                                                                        <div class="form-group">
+                                                                            <label class="control-label mb-10"
+                                                                                for="exampleInputuname_1">Ngày
+                                                                                Sửa</label>
+                                                                            <div class="input-group">
+                                                                                <div class="input-group-addon"><i
+                                                                                        class="ti-save-alt"></i></div>
+                                                                                        <%let updated_at=new
+                                                                                    Date(profile.updated_at)%>
+                                                                                <input type="text" class="form-control"
+                                                                                    value="<%=(updated_at.getDate() + "/" + (updated_at.getMonth()+1) + "/" + updated_at.getFullYear())%>" readonly="">
+                                                                            </div>
+                                                                        </div>
+                                                                        <!-- Nút chức năng -->
+                                                                        <div class="form-actions mt-10">
+                                                                            <button type="submit"
+                                                                                class="btn btn-success mr-10 mb-30">Cập
+                                                                                nhật thông tin</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div id="myModal" class="modal fade in" tabindex="-1" role="dialog"
+                                        aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-body">
+                                                    <!-- Row -->
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="">
+                                                                <div class="panel-wrapper collapse in">
+                                                                    <div class="panel-body pa-0">
+                                                                        <div class="col-sm-12 col-xs-12">
+                                                                            <div class="form-wrap">
+                                                                                <form action="../../../profile/updatepass" method="post">
+                                                                                    <div
+                                                                                        class="form-body overflow-hide">
+                                                                                        <div class="form-group">
+
+                                                                                        </div>
+                                                                                        <div class="form-group">
+
+                                                                                        </div>
+                                                                                        <div class="form-group">
+
+                                                                                        </div>
+                                                                                        <div class="form-group">
+                                                                                            <label
+                                                                                                class="control-label mb-10">Mật
+                                                                                                khẩu cũ</label>
+                                                                                            <div
+                                                                                                class="input-group">
+                                                                                                <div
+                                                                                                    class="input-group-addon">
+                                                                                                    <i
+                                                                                                        class="icon-lock"></i>
+                                                                                                </div>
+                                                                                                <input
+                                                                                                    type="password"
+                                                                                                    class="form-control"
+                                                                                                    name="oldPass"
+                                                                                                    id=""
+                                                                                                    placeholder="*********"
+                                                                                                    value="" required>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="form-group">
+                                                                                            <label
+                                                                                                class="control-label mb-10">Mật
+                                                                                                khẩu mới</label>
+                                                                                            <div
+                                                                                                class="input-group">
+                                                                                                <div
+                                                                                                    class="input-group-addon">
+                                                                                                    <i
+                                                                                                        class="icon-lock"></i>
+                                                                                                </div>
+                                                                                                <input
+                                                                                                    type="password"
+                                                                                                    name="newPass"
+                                                                                                    class="form-control"
+                                                                                                    id="pass1"
+                                                                                                    placeholder="*********"
+                                                                                                    required>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="form-group">
+                                                                                            <label
+                                                                                                class="control-label mb-10">Nhập
+                                                                                                lại mật khẩu</label>
+                                                                                            <div
+                                                                                                class="input-group">
+                                                                                                <div
+                                                                                                    class="input-group-addon">
+                                                                                                    <i
+                                                                                                        class="icon-lock"></i>
+                                                                                                </div>
+                                                                                                <input onblur="checkPass()"
+                                                                                                    type="password"
+                                                                                                    class="form-control"
+                                                                                                    id="pass2"
+                                                                                                    placeholder="*********"
+                                                                                                    required>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div
+                                                                                        class="form-actions mt-10">
+                                                                                        <button type="submit"
+                                                                                            class="btn btn-success mr-10 mb-30">Đổi mật khẩu</button>
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /.modal-content -->
+                                        </div>
+                                        <!-- /.modal-dialog -->
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <!-- /Row -->
+
+                <!-- /Row -->
+
+            </div>
+            <!-- Footer -->
+            <footer class="footer container-fluid pl-30 pr-30">
+				<div class="row">
+					<div class="col-sm-12">
+						<p>2023 &copy; Thesis by The Anh Phung with Thuy Trang Phung</p>
+					</div>
+				</div>
+			</footer>
+            <!-- /Footer -->
+
+        </div>
+        <!-- /Main Content -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- JavaScript -->
+    <script>
+        function checkPass(){
+				let password1 = document.getElementById('pass1').value;
+				let password2 = document.getElementById('pass2').value;
+				if(!(password1 == password2)){
+					alert('Mật khẩu không trùng khớp');
+				}
+			}
+
+            <%var message = message%>
+			<%if(message){%>
+				alert("<%=message%>");
+				<%}%>
+    </script>
+
+    <!-- jQuery -->
+    <script src="../../public/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../../public/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Vector Maps JavaScript -->
+    <script src="../../public/vendors/vectormap/jquery-jvectormap-2.0.2.min.js"></script>
+    <script src="../../public/vendors/vectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="../../public/dist/js/vectormap-data.js"></script>
+
+    <!-- Calender JavaScripts -->
+    <script src="../../public/vendors/bower_components/moment/min/moment.min.js"></script>
+    <script src="../../public/vendors/jquery-ui.min.js"></script>
+    <script src="../../public/vendors/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
+    <script src="../../public/dist/js/fullcalendar-data.js"></script>
+
+    <!-- Counter Animation JavaScript -->
+    <script src="../../public/vendors/bower_components/waypoints/lib/jquery.waypoints.min.js"></script>
+    <script src="../../public/vendors/bower_components/jquery.counterup/jquery.counterup.min.js"></script>
+
+    <!-- Data table JavaScript -->
+    <script src="../../public/vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+
+    <!-- Slimscroll JavaScript -->
+    <script src="../../public/dist/js/jquery.slimscroll.js"></script>
+
+    <!-- Fancy Dropdown JS -->
+    <script src="../../public/dist/js/dropdown-bootstrap-extended.js"></script>
+
+    <!-- Sparkline JavaScript -->
+    <script src="../../public/vendors/jquery.sparkline/dist/jquery.sparkline.min.js"></script>
+
+    <script src="../../public/vendors/bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
+    <script src="../../public/dist/js/skills-counter-data.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="../../public/vendors/bower_components/raphael/raphael.min.js"></script>
+    <script src="../../public/vendors/bower_components/morris.js/morris.min.js"></script>
+    <script src="../../public/dist/js/morris-data.js"></script>
+
+    <!-- Owl JavaScript -->
+    <script src="../../public/vendors/bower_components/owl.carousel/dist/owl.carousel.min.js"></script>
+
+    <!-- Switchery JavaScript -->
+    <script src="../../public/vendors/bower_components/switchery/dist/switchery.min.js"></script>
+
+    <!-- Data table JavaScript -->
+    <script src="../../public/vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+
+    <!-- Gallery JavaScript -->
+    <script src="../../public/dist/js/isotope.js"></script>
+    <script src="../../public/dist/js/lightgallery-all.js"></script>
+    <script src="../../public/dist/js/froogaloop2.min.js"></script>
+    <script src="../../public/dist/js/gallery-data.js"></script>
+
+    <!-- twitter JavaScript -->
+    <script src="../../public/dist/js/twitterFetcher.js"></script>
+
+    <!-- Spectragram JavaScript -->
+    <script src="../../public/dist/js/spectragram.min.js"></script>
+
+    <!-- Init JavaScript -->
+    <script src="../../public/dist/js/init.js"></script>
+    <script src="../../public/dist/js/widgets-data.js"></script>
+
+</body>
+
+</html>

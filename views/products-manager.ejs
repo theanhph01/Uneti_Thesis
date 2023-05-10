@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Quản lí đơn hàng</title>
+    <meta name="description" content="Jetson is a Dashboard & Admin Site Responsive Template by hencework." />
+    <meta name="keywords"
+        content="admin, admin dashboard, admin template, cms, crm, Jetson Admin, Jetsonadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
+    <meta name="author" content="hencework" />
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../../public/favicon.ico">
+    <link rel="stylesheet" href="../../public/themify-icons/themify-icons.css">
+    <link rel="icon" href="../../public/favicon.ico" type="image/x-icon">
+    <!-- vector map CSS -->
+    <link href="../../public/vendors/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet" type="text/css" />
+
+    <!-- Footable CSS -->
+    <link href="../../public/vendors/bower_components/FooTable/compiled/footable.bootstrap.min.css" rel="stylesheet"
+        type="text/css" />
+    <!-- Custom CSS -->
+    <link href="../../public/dist/css/style.css" rel="stylesheet" type="text/css">
+    <!-- DataTable -->
+    <link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+
+    <style>
+        /* The Modal (background) */
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+        }
+
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            /* Could be more or less, depending on screen size */
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #btn_add_category {
+            margin-top: 20px;
+            width: 50px;
+            height: 50px;
+        }
+
+        #category-add {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <!--Preloader-->
+    <div class="preloader-it">
+        <div class="la-anim-1"></div>
+    </div>
+    <!--/Preloader-->
+    <div class="wrapper theme-1-active pimary-color-green">
+        <!-- Top Menu Items -->
+        <!-- /Top Menu Items -->
+        <!-- Left Sidebar Menu -->
+        <!-- /Left Sidebar Menu -->
+        <!-- Right Sidebar Menu -->
+        <!-- /Right Sidebar Menu -->
+
+        <%-include("./block/user-header")%>
+        <%-include("./block/user-nav")%>
+
+        <!-- Main Content -->
+        <div class="page-wrapper">
+            <div class="container-fluid">
+                <!-- Title -->
+                <div class="row heading-bg">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h5 class="txt-dark">Quản lí đơn đặt hàng</h5>
+                    </div>
+                    <!-- Breadcrumb -->
+                    <!-- /Breadcrumb -->
+                </div>
+                <!-- /Title -->
+
+                <!-- MODAL -->
+                <!-- Modal Add -->
+                <!-- <form action="" method="post">
+                    <div id="modal_add" class="modal">
+                        <div class="modal-content">
+                            <div class="form-body overflow-hide">
+                                <div class="input-group">
+                                    <input type="text" id="example-input2-group2" name="category_name"
+                                        class="form-control" placeholder="Tên Danh Mục">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-success btn-anim"><i class="icon-rocket"></i><span
+                                                class="btn-text">Thêm</span></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form> -->
+
+                <!-- Modal hiện sản phẩm cho từng danh mục -->
+                <!-- <div id="modal_view_products" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <div class="table">
+                            <table id="footable_2">
+                                <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Tình trạng</th>
+                                        <th>Ngày tạo</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="products">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div> -->
+
+                <!-- Modal hiện dach sách sản phẩm của Order -->
+                <div id="modal_products" class="modal">
+                    <div class="modal-content">
+                        
+                        <h5 id="khachhang" style="opacity: 0.6; font-weight: bold;"> </h5>
+                        <h6 id="sdt" style="opacity: 0.6; font-weight: bold;"> </h6>
+                        <form action="/products-manager" method="post">
+                            <input type="hidden" id="orderID" name="order_id" value="">
+                            <div class="table"> 
+                                <table id="footable_2">
+                                    <thead>
+                                        <tr>
+                                            <th>STT</th>
+                                            <th>Tên Sản Phẩm</th>
+                                            <th>Số lượng</th>
+                                            <th>Thành tiền</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="products">
+
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+											<th style="font-size: 15px;" colspan="3">Tổng tiền:</th>
+											<th id="Price" style="font-size: 15px;"></th>
+										</tr>
+                                        <tr>
+                                            <th colspan="4">
+                                                <div class="form-actions pull-right pr-15" id="btn_submit">
+                                                    <!-- <button class="btn btn-primary btn-anim pull-left"><i class="fa fa-sign-out"></i><span class="btn-text">Đã giao</span></button> -->
+                                                </div>
+                                            </th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+                <!-- Row -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel panel-default card-view">
+                            <div class="panel-heading">
+                                <div class="pull-left">
+                                    <h6 class="panel-title txt-dark">Danh sách đơn đặt hàng</h6>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <!-- Button AddCategory -->
+                            <div class="panel-wrapper collapse in">
+                                <div class="panel-body" style="padding: 0;">
+                                    <div class="table-wrap">
+                                        <table id="footable_1" class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th data-name="id" data-breakpoints="xs" data-type="number">STT</th>
+                                                    <th>Tên tài khoản</th>
+                                                    <th data-name="name">Tình trạng</th>
+                                                    <th data-name="ngay_tao">Ngày Tạo</th>
+                                                    <th data-name="action">Hành động</th>
+                                                </tr>
+                                            </thead>
+                                            <!-- Đổ dữ liệu Category -->
+                                            <tbody>
+                                                <%var i=1;%>
+                                                    <%orders.forEach(item=>{%>
+                                                        <tr>
+                                                            <td data-breakpoints="xs">
+                                                                <%=i++%>
+                                                            </td>
+                                                            <td>
+                                                                <%=item.user_name%>
+                                                            </td>
+                                                            <td>
+                                                                <% var state; switch(item.state) { case 0: state=`<i
+                                                                    class="ti-shopping-cart-full"
+                                                                    style="font-weight: bold; color: red"> Đơn hàng chưa
+                                                                    thanh toán </i>`
+                                                                    break;
+                                                                    case 1:
+                                                                    state = `<i class="ti-package"
+                                                                        style="font-weight: bold; color: gray"> Đơn hàng
+                                                                        đã thanh toán </i>`
+                                                                    break;
+                                                                    case 2:
+                                                                    state = `<i class="ti-truck"
+                                                                        style="font-weight: bold; color: blue"> Đơn hàng
+                                                                        đang được giao... </i>`
+                                                                    break;
+                                                                    default:
+                                                                    state = `<i class="ti-money"
+                                                                        style="font-weight: bold; color: green"> Đơn
+                                                                        hàng giao thành công</i>`
+                                                                    }%>
+                                                                    <%-state%>
+                                                            </td>
+                                                            <td>
+                                                                <%var date=new Date(item.created_at); 
+                                                                var created_at=date.getDate() + '/' + (date.getMonth()+1) + '/' + date.getFullYear(); %>
+                                                                    <%=created_at%>
+                                                            </td>
+                                                            <!-- Nút chức năng -->
+                                                            <td data-breakpoints="xs sm md">
+                                                                <button class="btn_show mr-5"
+                                                                    style="width: 40px; height: 40px;" onmouseup="loadTable(<%=item.user_id%>,<%=item.order_id%>); setId(<%=item.order_id%>)">
+                                                                    <i class="ti-eye" style="font-weight: bold;"></i>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                        <%})%>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row -->
+
+                <!-- /Row -->
+
+                <!-- Footer -->
+                <footer class="footer container-fluid pl-30 pr-30">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p>2023 &copy; Thesis by The Anh Phung with Thuy Trang Phung</p>
+                        </div>
+                    </div>
+                </footer>
+                <!-- /Footer -->
+
+            </div>
+        </div>
+        <!-- /Main Content -->
+
+    </div>
+    <div class="abc" id="abc">
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- JavaScript -->
+    <script>
+        var idOrder = "";
+        function setId(id) {
+            idOrder = id;
+            document.getElementById("orderID").value = idOrder;
+        }
+
+        var modal_products = document.getElementById("modal_products");
+        for(let i = 0; i < <%=orders.length%>; i++){
+            var btn_show = document.getElementsByClassName("btn_show")[i];
+            btn_show.onclick = function(){
+                modal_products.style.display = "block";
+            }
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal_products) {
+                var table = $('#footable_2').DataTable();
+                table.destroy();
+                modal_products.style.display = "none";
+            }
+        }
+
+
+    </script>
+
+    <!-- jQuery -->
+    <script src="../../public/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../../public/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Data table JavaScript -->
+    <script src="../../public/vendors/bower_components/moment/min/moment.min.js"></script>
+    <script src="../../public/vendors/bower_components/FooTable/compiled/footable.min.js" type="text/javascript"></script>
+    <script src="../../public/dist/js/footable-data.js"></script>
+
+    <!-- Slimscroll JavaScript -->
+    <script src="../../public/dist/js/jquery.slimscroll.js"></script>
+
+    <!-- Fancy Dropdown JS -->
+    <script src="../../public/dist/js/dropdown-bootstrap-extended.js"></script>
+
+    <!-- Owl JavaScript -->
+    <script src="../../public/vendors/bower_components/owl.carousel/dist/owl.carousel.min.js"></script>
+
+    <!-- Sweet-Alert  -->
+    <script src="../../public/vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../public/dist/js/sweetalert-data.js"></script>
+
+    <!-- Switchery JavaScript -->
+    <script src="../../public/vendors/bower_components/switchery/dist/switchery.min.js"></script>
+
+    <!-- Init JavaScript -->
+    <script src="../../public/dist/js/init.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <!-- Tiếng Việt cho Datatable -->
+    <script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.10.25/i18n/Vietnamese.json"></script>
+
+
+
+
+    <script>
+        // $(document).ready(function () {
+        //     $('#footable_1').DataTable();
+        // });
+        $(document).ready(function () {
+            $('#footable_1').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Vietnamese.json"
+                }
+            });
+        });
+
+    </script>
+
+    <script>
+        function loadTable(user_id, order_id) {
+            $.get("/products-manager/" + user_id + "/" + order_id, (data) => {
+                let khachhang = `Khách hàng:  ${data[0].fullname}`;
+                let sdt =`SĐT:  ${data[0].phone_number}`;
+                $('#khachhang').html(khachhang);
+                $('#sdt').html(sdt);
+             //   console.log(data);
+                let btn_submit = ``;
+                if(data[0].state == 1){
+                    btn_submit = `<button class="btn btn-primary btn-anim pull-left"><i class="fa fa-sign-out"></i><span class="btn-text">Giao Hàng</span></button>`;
+                }
+                else if(data[0].state == 2){
+                    btn_submit = `<button class="btn btn-primary btn-anim pull-left" style="background: #4aa23c !important; border: solid 1px #4aa23c !important;"><i class="fa fa-sign-out"></i><span class="btn-text">Giao hàng thành công</span></button>`;
+                }
+                else{
+                    btn_submit = ``;
+                }
+                $("#btn_submit").html(btn_submit);
+
+                let html = ``;
+                let price = ``;
+                let sum = 0;
+                var i = 0;
+                data.forEach(item => {
+                    var date = new Date(item.created_at);
+                    var created_at = date.getDate() + '/' + (date.getMonth()+1) + '/' + date.getFullYear();
+                    html += `<tr>
+                                <td>${++i}</td>
+                                <td>${item.product_name}</td>
+                                <td>${item.quantity}</td>
+                                <td>${item.price * item.quantity}</td>
+                            </tr>`
+                    sum += parseInt(item.price * item.quantity);
+                    price = `${sum}`
+                });
+                $('#Price').html(price);
+                $("#products").html(html);
+                $('#footable_2').DataTable({
+                    "language": {
+                        "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Vietnamese.json"
+                    }
+                });
+            })
+        }
+    </script>
+</body>
+
+</html>

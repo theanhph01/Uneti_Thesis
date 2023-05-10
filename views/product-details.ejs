@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title><%=product.product_name%></title>
+	<meta name="description" content="Jetson is a Dashboard & Admin Site Responsive Template by hencework." />
+	<meta name="keywords"
+		content="admin, admin dashboard, admin template, cms, crm, Jetson Admin, Jetsonadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
+	<meta name="author" content="hencework" />
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="../../../public/favicon.ico">
+	<link rel="icon" href="../../../public/favicon.ico" type="image/x-icon">
+
+	<!-- jquery-steps css -->
+	<link rel="stylesheet" href="../../../public/vendors/bower_components/jquery.steps/demo/css/jquery.steps.css">
+
+	<!-- bootstrap-touchspin CSS -->
+	<link href="../../../public/vendors/bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css"
+		rel="stylesheet" type="text/css" />
+
+	<!-- Custom CSS -->
+	<link href="../../../public/dist/css/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+	<!--Preloader-->
+	<div class="preloader-it">
+		<div class="la-anim-1"></div>
+	</div>
+	<!--/Preloader-->
+	<div class="wrapper theme-1-active pimary-color-green">
+
+        <%-include("./block/user-header")%>
+		<%-include("./block/user-nav")%>
+
+		<!-- Main Content -->
+		<div class="page-wrapper">
+			<div class="container-fluid">
+				<!-- Title -->
+				<div class="row heading-bg">
+					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+						<h5 class="txt-dark">Chi tiết sản phẩm</h5>
+					</div>
+					<!-- Breadcrumb -->
+
+					<!-- /Breadcrumb -->
+				</div>
+				<!-- /Title -->
+
+				<!-- Row -->
+				<form  method="post">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="panel panel-default card-view">
+								<div class="panel-wrapper collapse in">
+									<div class="panel-body">
+										<div class="row">
+											<div class="col-md-3">
+												<div class="item-big">
+													<!-- START carousel-->
+													<div id="carousel-example-captions-1" data-ride="carousel"
+														class="carousel slide">
+														<ol class="carousel-indicators">
+															<li data-target="#carousel-example-captions-1"
+																data-slide-to="0" class="active"></li>
+															<li data-target="#carousel-example-captions-1"
+																data-slide-to="1"></li>
+														</ol>
+														<div role="listbox" class="carousel-inner">
+															<div class="item active"> <img
+																	src="../../../public/upload/<%=product.file_name%>"
+																	alt="First slide image"
+																	style="width: 250px; height: 300px;"> </div>
+															<div class="item"> <img
+																	src="../../../public/upload/<%=product.file_name%>"
+																	alt="Second slide image"
+																	style="width: 250px; height: 300px;"> </div>
+														</div>
+													</div>
+													<!-- END carousel-->
+												</div>
+											</div>
+
+											<div class="col-md-9">
+												<div class="product-detail-wrap">
+													<h3 class="mb-20 weight-500">
+														<%=product.product_name%>
+													</h3>
+													<div class="product-price head-font mb-30">
+														<%=(product.price.toLocaleString('vi-VN'))%> VNĐ
+													</div>
+													<p class="mb-50">
+														<%=product.contents%>
+													</p>
+
+													<%if(user && user.role == 0){%>
+													<input class="vertical-spin" type="number"
+														data-bts-button-down-class="btn btn-default" name="quantity"
+														data-bts-button-up-class="btn btn-default" value="1"
+														name="vertical-spin">
+
+													<div class="btn-group mr-10">
+														<button class="btn btn-success btn-anim"><i
+																class="fa fa-shopping-cart"></i><span
+																class="btn-text">Thêm vào giỏ hàng</span></button>
+													</div>
+													<%}%>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+				<!-- Row -->
+
+				<!-- Row -->
+
+				<!-- /Row -->
+			</div>
+
+			<!-- Footer -->
+			<footer class="footer container-fluid pl-30 pr-30">
+				<div class="row">
+					<div class="col-sm-12">
+						<p>2023 &copy; Thesis by The Anh Phung with Thuy Trang Phung</p>
+					</div>
+				</div>
+			</footer>
+			<!-- /Footer -->
+
+		</div>
+		<!-- /Main Content -->
+
+	</div>
+	<!-- /#wrapper -->
+
+	<!-- JavaScript -->
+
+	<!-- jQuery -->
+	<script src="../../../public/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="../../../public/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<!-- Form Wizard JavaScript -->
+	<script src="../../../public/vendors/bower_components/jquery.steps/build/jquery.steps.min.js"></script>
+
+	<!-- Bootstrap Touchspin JavaScript -->
+	<script
+		src="../../../public/vendors/bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
+
+	<!-- Starrr JavaScript -->
+	<script src="../../../public/dist/js/starrr.js"></script>
+
+	<!-- Product Detail Data JavaScript -->
+	<script src="../../../public/dist/js/product-detail-data.js"></script>
+
+	<!-- Slimscroll JavaScript -->
+	<script src="../../../public/dist/js/jquery.slimscroll.js"></script>
+
+	<!-- Owl JavaScript -->
+	<script src="../../../public/vendors/bower_components/owl.carousel/dist/owl.carousel.min.js"></script>
+
+	<!-- Switchery JavaScript -->
+	<script src="../../../public/vendors/bower_components/switchery/dist/switchery.min.js"></script>
+
+	<!-- Fancy Dropdown JS -->
+	<script src="../../../public/dist/js/dropdown-bootstrap-extended.js"></script>
+
+	<!-- Init JavaScript -->
+	<script src="../../../public/dist/js/init.js"></script>
+
+</body>
+
+<script>
+	
+</script>
+
+</html>
